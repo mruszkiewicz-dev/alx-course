@@ -10,18 +10,480 @@
     <title>Document</title>
   </head>
   <body class="h-screen">
-    <mian
-      class="flex flex-col justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl"
-    >
-      <div class="">
+    <mian class="flex flex-col justify-center items-center">
+      <div class="bg-gray-200 rounded-lg m-10 shadow-2xl my-2 px-10">
         <pre class="text-inherit">
+          <h1>Wstęp</h1>
             <code>
-               // Twój kod tutaj
-               function example() {
-                  console.log("Hello, Tailwind CSS!");
-               }
+              const loginForm = document.getElementById('login-form');
+
+              loginForm.addEventListener('submit', (e) => {
+                  e.preventDefault();
+
+                  const data = new FormData(e.target);
+
+
+                  // console.log(loginForm.login.value);
+                  // console.log(e.target.elements.login.value); // <= nie polecam
+                  // console.log(data.get('login')); // <= polecam
+
+                  alert(`Login: ${data.get('login')} i Haslo: ${data.get('password')}`);
+                  // prompt();
+                  // confirm();
+
+                  console.log('Zatwierdzony formularz');
+              });
+
+              document.getElementById('btn').addEventListener('click', (e) => {
+                  console.log('KLIK');
+                  console.log('Target: ', e.target);
+                  console.log('Current Target: ', e.currentTarget);
+              });
+
+              // document.getElementById('btn-strong').addEventListener('click', (e) => {
+              //     console.log('KLIK STRONG');
+              // });
+
+              // function submitForm(e) {
+              //     console.log('SUBMIT');
+              //     return false;
+              // }
+
+              // stopPropagation
             </code>
          </pre>
+      </div>
+      <!-- class.js  -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-10"
+      >
+        <pre class="text-inherit">
+          <h1>Klasy</h1>
+            <code>
+              const obj = {
+                keepSignedIn: true,
+                login: 'oskar',
+                password: '1234'
+            };
+            
+            const secondPerson = {
+                login: 'oskar',
+                password: '1234'
+            };
+            
+            
+            // w TS *
+            // class Foo {
+            //     constructor(
+            //         private readonly name: string,
+            //     ) {}
+            // }
+            
+            class SignInDto {
+                keepSignedIn = true;
+            
+                constructor(login, password) {
+                    this.login = login;
+                    this.password = password;
+                }
+            
+                print() {
+                    console.log(this.login + ' ' + this.password)
+                }
+            }
+            
+            const dto = new SignInDto('oskar', '1234');
+            const secondDto = new SignInDto('maciek', '1qaz');
+            
+            
+            console.log(dto instanceof SignInDto);
+            console.log(obj instanceof SignInDto);
+            console.log(secondDto);
+            secondDto.print();
+            
+            class NotFoundError extends Error {}
+            
+            const getUserById = (id) => {
+                // ...
+            
+                // throw new Error('Jakis blad');
+                return null;
+            }
+            
+            
+            try {
+                // ... 
+                const user = getUserById();
+            
+                throw new Error('Inny blad');
+                if (!user) throw new NotFoundError();
+            } catch(err) {
+                if (err instanceof NotFoundError) {
+                    alert('Nie znaleziono usera!')
+                }
+                else {
+                    console.error(err)
+                }
+            }
+            
+            
+            console.log(
+                Object.keys({ login: 'oskar', password: '1234' })
+            );
+            
+            console.log(
+                Object.keys(dto)
+            );
+            
+            
+            console.log(
+                Object.values({ login: 'oskar', password: '1234' })
+            );
+            
+            console.log(
+                Object.values(dto)
+            );
+            
+            console.log(
+                Object.entries({ login: 'oskar', password: '1234' })
+            );
+            
+            console.log(
+                Object.entries(dto)
+            );
+            
+            for (const entry of Object.entries(dto)) {
+                console.log({ klucz: entry[0], wartosc: entry[1] })
+            }
+            
+            for (const entry of Object.entries(dto)) {
+                console.log({ klucz: entry[0], wartosc: entry[1] })
+            }
+            
+            for (const entry of Object.entries(dto)) {
+                // destrukturyzacja tablicy
+                const [first, second] = entry;
+                // w react
+                // const [state, setState] = useState();
+            
+                console.log({ klucz: first, wartosc: second });
+            }
+            
+            for (const [first, second] of Object.entries(dto)) {
+                console.log({ klucz: first, wartosc: second });
+            }
+            
+            // destrukturyzacja tablicy
+            const [first, second] = ['pierwszy element', 'drugi element'];
+            // w react
+            // const [state, setState] = useState();
+            
+            // destrukturyzacja obiektu
+            const { login } = dto;
+            console.log(login);
+            // dto.login
+            
+            // Praktyka w react *
+            // const LoginForm = (props) => {
+            //     return <div id={props.id }></div>;
+            // }
+            // {/* <LoginForm id='login-form' /> */}
+            // const LoginForm = (props) => {
+            //     const { id } = props;
+            
+            //     return <div id={id}></div>;
+            // }
+            
+            // {/* <LoginForm id='login-form' /> */}
+            // const LoginForm = ({ id }) => {
+            //     return <div id={id}></div>;
+            // }
+            
+            
+            const arr = [];
+            
+            arr['arr_first'] = '11111';
+            arr.arr_second =  '22222'
+            
+            const { arr_first, arr_second } = arr;
+            console.log(arr_first, arr_second);
+            console.log(arr.arr_first);
+            
+            
+            const json1 = '{}';
+            console.log(
+                json1,
+                JSON.parse(json1)
+            );
+            
+            const json2 = '{"login": "oskar", "age": 2}';
+            console.log(
+                json2,
+                JSON.parse(json2)
+            );
+            
+            const signInDto = new SignInDto("Oskar", "1234");
+            
+            console.log(signInDto);
+            signInDto.print();
+            console.log(JSON.stringify(signInDto))
+            
+            const stringFromDto = JSON.stringify(signInDto);
+            const dtoFromString = JSON.parse(stringFromDto);
+            
+            console.log(dtoFromString)
+            console.log(new SignInDto(dtoFromString.login, dtoFromString.password))
+            </code>
+         </pre>
+      </div>
+      <!-- store -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-10"
+      >
+        <pre class="text-inherit">
+        <h1>Storage</h1>
+         <code>
+          // Local Storage
+
+              localStorage.setItem('language', 'pl');
+
+              console.log(
+                  localStorage.getItem('language')
+              );
+
+              // localStorage.clear() -> usun wszystko
+              // localStorage.removeItem('language');
+
+              // Session Storage
+              // sessionStorage.setItem('lng', 'pl');
+
+              console.log(
+                  sessionStorage.getItem('lng')
+              )
+         </code>
+       </pre>
+      </div>
+      <!-- chat.js -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
+        <pre class="text-inherit">
+            <h1>Chat.js</h1>
+             <code>
+              // wyszukanie elementów na stronie i przypisanie ich do stałych
+              const $authorErrorMessage = document.getElementById('author-error');
+              const $authorInput = document.getElementById('author');
+              
+              const $messageErrorMessage = document.getElementById('message-error');
+              const $messageInput = document.getElementById('message');
+              
+              const $resetButton = document.getElementById('reset-btn');
+              
+              const $messageList = document.getElementById('message-list');
+              
+              // Ustawianie domyslnej wartosci przy uzyciu operatora || lub ??
+              // const persistedMessagesString = localStorage.getItem('messages') ?? '[]'; <- podobnie do || ale tylko dla null i undefined
+              // Wyciągnięcie zapisanych danych w localStorage
+              const persistedMessagesString = localStorage.getItem('messages') || '[]';
+              // zamiana zapisanych danych z localStorage ( string ) na tablicę 
+              const messagesArray = JSON.parse(persistedMessagesString);
+              
+              const validateAuthorField = (authorValue) => {
+                  // Jeśli nie ma elementu $authorErrorMessage ( bo go nie znaleziono ) , to wykonaj pewne akcje
+                  if (!$authorErrorMessage)  {
+                      alert('Cos poszlo nie tak!');
+                      $authorInput.classList.add('error-border');
+                      // Early return <- wyjscie z funkcji 
+                      return false;
+                  } 
+                  // Jeśli authorValue jest falsy dodaj odpowiedni tekst i klasę kolorującą ramkę 
+                  if (!authorValue) {
+                      $authorErrorMessage.innerText = 'Pole wymagane!';
+                      $authorInput.classList.add('error-border');
+                      return false;
+                  }
+              
+                  // Jeśli dane poprawne, usuń stan błędu 
+                  $authorInput.classList.remove('error-border');
+                  $authorErrorMessage.innerText = '';
+              
+                  return true;
+              }
+              
+              const validateMessageField = (messageValue) => {
+                  // Jeśli messageValue jest falsy, to wejdz w stan błędu 
+                  if (!messageValue) {
+                      document.getElementById('message-error').innerText = 'Pole wymagane!';
+                      document.getElementById('message').classList.add('error-border');
+                      return false;
+                  } 
+              
+                  // Jeśli messageValue ma mniej znaków niz 2, to wejdz w stan błędu 
+                  if (messageValue.length < 2) {
+                      document.getElementById('message-error').innerText = 'Pole musi miec min 2 znaki!';
+                      document.getElementById('message').classList.add('error-border');
+                      return false;
+                  }
+              
+                  // Jeśli dane poprawne, usuń stan błędu 
+                  $messageInput.classList.remove('error-border');
+                  $messageErrorMessage.innerText = '';
+              
+                  return true;
+              }
+              
+              // Funkcja zapisująca dane do localStorage. Przed zapisem zamiana na napis
+              const saveData = () => {
+                  localStorage.setItem('messages', JSON.stringify(messagesArray))
+              }
+              
+              // Klasa do definiowania obiektów reprezentujących wiadomości
+              class Message {
+                  constructor(author, body, liked, disliked) {
+                      this.author = author;
+                      this.body = body;
+                      this.liked = liked;
+                      this.disliked = disliked;
+                  }
+              }
+              
+              // Funkcje renderująca listę wiadomosci
+              const renderMesssages = (messagesArray) => {
+                  // Wyczyszczenie listy, przed dodaniem najnowszej wersji 
+                  $messageList.innerHTML = '';
+              
+                  // Doklejanie HTML'a do $messageList na bazie messagesArray
+                  for (const message of messagesArray) {
+                      $messageList.innerHTML += `
+                          <li class="list-group-item">
+                              <div class="fw-bold">${message.author}</div>
+                              <span>${message.body}</span>
+              
+                              <button class="like-btn btn btn-info" ${message.liked && 'disabled'}>:)</button>
+                              <button class="dislike-btn btn btn-warning"  ${message.disliked && 'disabled'}>:(</button>
+                              <button class="delete-btn btn btn-danger">Usun</button>
+                          </li>
+                      `;
+                  }
+              
+                  // Znalezeienie guzików z klasą like-btn. Zamieniamy na tablicę przy uzyciu Array.from(). getElementsByClassName() zwraca kolekcje, a łatwiej nam będzie pracować z tablicą
+                  const likesBtn = Array.from(document.getElementsByClassName('like-btn'));
+              
+                  // Kazdemu guzikowi do polubien przypisz event listener na zdarzenie click
+                  for (const likeBtn of likesBtn) {
+                      likeBtn.addEventListener('click', (e) => {
+                          // Po kliknieciu dodaj kliknietemu przyciskowi atrybut disabled
+                          e.target.setAttribute('disabled', true);
+              
+                          // Odwolanie do elementu nadrzednego dla kliknietego guzika, czyli elementu li
+                          const $parentLi = e.target.parentElement;
+              
+                          // Znajdz wiadomosc, ktrej tresc pasuje do tresci z li, w ktorym jest klikniety przycisk 
+                          const messageToLike = messagesArray.find(msg => {
+                              return msg.body === $parentLi.querySelector('span').innerText;
+                          });
+              
+                          // Zmodyfikuj dane 
+                          messageToLike.liked = true;
+                          // Zapisz w localStorage, zeby po odswiezeniu byly one dostepne
+                          saveData();
+                      });
+                  }
+              
+                  // Analogiczna logika dla przyciskow do znielubienia
+                  const dislikesBtn = Array.from(document.getElementsByClassName('dislike-btn'));
+              
+                  for (const dislikeBtn of dislikesBtn) {
+                      dislikeBtn.addEventListener('click', (e) => {
+                          e.target.setAttribute('disabled', true);
+                      });
+                  }
+              
+                  // Znajdz wszystkie przyciski do usuwania
+                  const deleteBtns = Array.from(document.getElementsByClassName('delete-btn'));
+              
+                  // Kaxdemu guzikowi przypisz event listener na zdarzenie click
+                  for (const deleteBtn of deleteBtns) {
+                      deleteBtn.addEventListener('click', (e) => {
+                          console.log('USUN')
+                          const $parentLi = e.target.parentElement;
+              
+                          // Znajdz wiadomosc, ktorej tresc pasuje do tresci z li, w ktorym jest klikniety przycisk 
+                          const indexOfMessageToDelete = messagesArray.findIndex(msg => {
+                              return msg.body === $parentLi.querySelector('span').innerText;
+                          });
+              
+                          // Usun element z tablicy
+                          messagesArray.splice(indexOfMessageToDelete, 1);
+              
+                          // Zapisz dane do localStorage
+                          saveData();
+                          // Przerenderuj listę, tak aby jeszcze zobaczyć widok pasujący do danych ze zmiennej messagesArray
+                          // Czyli bez usunietej wiadomosci 
+                          renderMesssages(messagesArray);
+                      });
+                  }
+              }
+              
+              // Przypisz event listener na zdarzenie submit w formularzu
+              document.querySelector('#message-form').addEventListener('submit', (e) => {
+                  // Nie przeladowuj strony - powstrzymaj domyslne zachowanie przegladarki
+                  e.preventDefault();
+              
+                  // Korzystajac z FormData wyciagamy dane z formularza
+                  const formData = new FormData(e.target);
+              
+                  const author = formData.get('author');
+                  const message = formData.get('message');
+              
+                  // Sprawdzamy czy dane sa poprawne
+                  const isAuthorValid = validateAuthorField(author);
+                  const isMessageValid = validateMessageField(message);
+              
+                  // Jesli wiadomosc nie jest poprawna, to ustaw w tym polu kursor
+                  if (!isMessageValid) {
+                      $messageInput.focus();
+                  }
+                  // Jesli autor nie jest poprawny, to ustaw w tym polu kursor
+                  if (!isAuthorValid) {
+                      $authorInput.focus();
+                  }
+              
+                  // Jesli dane nie sa poprawne, to zakoncz wykonywanie funkcji 
+                  if (!isAuthorValid || !isMessageValid) return;
+              
+                  // Dopisz nowa wiadomosc do listy wiadomosci 
+                  messagesArray.push(new Message(author, message, false, false));
+              
+                  // Zapisz w localStorage
+                  saveData();
+              
+                  // Zaktualizuj widok bazujac na najnowszej wersji tablicy messagesArray
+                  renderMesssages(messagesArray);
+              });
+              
+              // Dodaj event listener na zdarzenie input, czyli kiedy ktos coś wpisuje w input
+              $authorInput.addEventListener('input', (e) => {
+                  // Waliduj przy wpisywaniu tekstu 
+                  validateAuthorField(e.target.value);
+              });
+              
+              // Analogicznie jak wyzej
+              $messageInput.addEventListener('input', (e) => {
+                  validateMessageField(e.target.value);
+              });
+              
+              // po kliknieciu w reset button programistycznie resetujemy wartosci pól 
+              // Polecam tak nie robic, tylko skorzystac z guzika typu "reset"
+              $resetButton.addEventListener('click', () => {
+                  $authorInput.value = null;
+                  $messageInput.value = null;
+              });
+              
+              // Wyrenderuj poczatkowy stan aplikacji ( na bazie danych zapisanych z localStorage )
+              renderMesssages(messagesArray);
+             </code>
+           </pre>
       </div>
     </mian>
   </body>

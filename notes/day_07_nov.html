@@ -7,22 +7,483 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>07_nov</title>
   </head>
   <body class="h-screen">
-    <mian
-      class="flex flex-col justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl"
-    >
-      <div class="">
+    <mian class="flex flex-col justify-center items-center">
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
         <pre class="text-inherit">
-            <code>
-               // Twój kod tutaj
-               function example() {
-                  console.log("Hello, Tailwind CSS!");
-               }
-            </code>
+            <h1>Przypomnienie truthy i falsy</h1>
+             <code>
+              // Przypomnienie truthy i falsy
+
+              const bool = false; //true;
+              const string = '';
+              
+              // wartosci falsy:
+              // ''
+              // 0
+              // null
+              // undefined
+              // false
+              
+              // Wartosci truthy:
+              // 'asd'
+              // []
+              // {}
+              // [1,2]
+              // 123
+              // true
+              
+              function sum(a, b) {
+                  return a + b;
+              }
+              
+              const multiply = (a, b) => {
+                  // this.c = a;
+              
+                  // return this.c / b;
+                  return a * b;
+              }
+              
+              // Mozna tez tak, zeby bylo szybciej
+              // const multiply = (a, b) => a * b;
+              
+              // Tak tez mozna
+              // const abs = (a) => {
+              //     return a * b;
+              // }
+              
+              const abs = a => {
+                  return a * b;
+              }
+              
+              const print = () => {
+                  console.log('Hello');
+              }
+              
+              const getDate = () => new Date();
+              
+              // Zwroc ostatni czlon lub pierwszy falsy ( nie false )
+              // const getDate = (a, b) => a && b && 'Czesc';
+              
+              // Wyrazenie funkcyjne
+              const subtract = function (a, b) {
+                  return a - b;
+              }
+              
+              
+              const result = sum(1, 4);
+              const result__2 = multiply(1, 4);
+              
+              // Wroce z this'em
+              
+              // Okej, bo function jest dostepne w calym pliku
+              bottom()
+              
+              function bottom() {
+                  console.log('Na samym dole')
+              }
+              
+              // Blad, bo stala jest definiowana nizej
+              // arrowBottom()
+              
+              // const arrowBottom =  () => {
+              //     console.log('Arrow Na samym dole')
+              // }
+             </code>
+           </pre>
+      </div>
+      <!-- tablice  -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
+        <pre class="text-inherit">
+          <h1>Tablice</h1>
+           <code>
+            // funkcja czysta -> zawsze zwraca ten sam wynik dla tych samych argumentow
+            const sum = (a, b)=> a + b;
+            
+            const notPurseSum = (a, b)=> {
+                const date = new Date();
+            
+                if (date.getSeconds() > 10) return 0;
+            
+                return a + b;
+            };
+            
+            let counter = 0;
+            
+            const print = () => {
+                if (counter > 3) {
+                    console.log('Powzyej')
+                } else {
+                    console.log('Ponizej 3')
+                }
+            }
+            
+            // print()
+            // print()
+            // print()
+            // counter = 4;
+            // print()
+            // print()
+            
+            const products = [
+                {
+                    name: 'Banany',
+                    quantity: 3,
+                    price: 3,
+                },
+                {
+                    name: 'Jablko',
+                    quantity: 0,
+                    price: 2,
+                },
+                {
+                    name: 'Sliwki',
+                    quantity: 13,
+                    price: 4,
+                }
+            ];
+            
+            const printProduct = product => {
+                console.log(product.name);
+            }
+            
+            products.forEach(printProduct);
+            
+            let quantitySum = 0;
+            
+            products.forEach((product, index) => {
+                quantitySum += product.quantity;
+            });
+            
+            console.log(quantitySum);
+            
+            const totalQuantity = products.reduce((accumulator, product) => {
+                return accumulator + product.quantity;
+            }, 0);
+            
+            console.log(totalQuantity)
+            
+            // Mozna tez tak szybciej ( Pamietamy o nawiasach okraglych kiedy zwracamy obiekt)
+            // const productsObject = products.reduce((accumulator, product) => ({ 
+            //     ...accumulator,
+            //      [product.name]: product.quantity 
+            //     }), {})
+            const productsObject = products.reduce((accumulator, product) => {
+                return { 
+                    // kopiowanie obiektu
+                    ...accumulator,
+                    // Definiowanie dynamicznych kluczy w obiekcie 
+                     [product.name]: product.quantity 
+                    }
+                },
+                // Zaczynamy od pustego obiektu
+                {}
+            );
+            
+            console.log(productsObject)
+            
+            const productsArray = products.reduce(
+                // Nie ma ciala funkcji - od razu zwracamy nowa tablice
+                (accumulator, product) => [
+                    // kopiujemy accumulator do nowej tablicy
+                    ...accumulator,
+                    // Dodajemy nowy element, ktory jest 2 elementowa tablica
+                    [product.name, product.quantity]
+                ], 
+                // Zaczynamy od pustej tablicy
+                []
+            );
+            
+            console.log(productsArray);
+            
+            const person = {
+                name: 'oskar',
+                address: {
+                    street: 'Jasna 14',
+                    city: 'Warszawa'
+                }
+            };
+            
+            // Plytkie kopiowani - shallow copying. Musimy sami zadbac o skopiowanie obiketu bedacego adresem 
+            const copyOfPerson = {...person, address: {...person.address}};
+            
+            person.name = 'maciek';
+            person.address.street = 'Marszalkowska 15';
+            
+            console.log(person);
+            console.log(copyOfPerson);
+            
+            // const anotherCopyOfPerson = {...person};
+            // const lodashCopyOfPerson = _.cloneDeep(person);
+            // TODO Wrocic z lodashem!
+            
+            person.address.street = 'Zlota';
+            
+            // console.log(anotherCopyOfPerson);
+            // console.log(lodashCopyOfPerson);
+            
+            // Czasami najlepsze rozwiazanie, kiedy mamy tylko dane w obiekcie
+            const copyWithJSON = JSON.parse(JSON.stringify(person));
+            
+            // const first = () => Math.random();
+            
+            // const second = (arg) => arg * 2;
+            
+            // second(first(third()), fourth())
+            
+            // Mapowanie elementow tablicy na nowa tablice ze zmienionymi elementami
+            const mappedProducts = products.map((product, i) => {
+                return {
+                    ...product,
+                    name: product.name.toUpperCase(),
+                    total: product.price * product.quantity,
+                    index: i
+                }
+            });
+            // W react najczesciej tak by to wygladalo:
+            // const mappedProducts = products.map((product, i) => ({
+            //     ...product,
+            //     name: product.name.toUpperCase(),
+            //     total: product.price * product.quantity,
+            //     index: i
+            // }));
+            
+            console.log(mappedProducts);
+            
+            // Przefiltruj produkty -> wez tylko te, ktore spelniaja warunek
+            const filteredProducts = products.filter(product => product.quantity > 0);
+            
+            console.log(filteredProducts)
+            
+            console.log(
+                // Laczenie wywolan
+                products
+                    .filter(product => product.quantity > 0)
+                    .map(product => product.quantity) 
+            );
+            
+            // Znajdz pierwszy pasujacy element z tablicy i go zwroc
+            // Jesli sie nie udalo znalezc to zwraca undefined
+            const foundProduct = products.find(product => product.quantity === 0);
+            
+            console.log(foundProduct);
+            
+            const sortedProducts = products.sort((firstProduct, secondProduct) => {
+            
+                // od min do max
+                // return firstProduct.quantity - secondProduct.quantity;
+            
+                // od max do min
+                return secondProduct.quantity - firstProduct.quantity;
+            });
+            
+            console.log(sortedProducts)
+            
+            const sortedProductsByName = products.sort((firstProduct, secondProduct) => {
+                if (firstProduct.name === secondProduct.name) return 0;
+            
+                // od min do max
+                return firstProduct.name < secondProduct.name ? -1 : 1;
+            
+                // od max do min
+                // return firstProduct.name < secondProduct.name ? 1 : -1;
+            });
+           </code>
          </pre>
       </div>
+      <!-- promisy -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
+        <pre class="text-inherit">
+        <h1>Promise</h1>
+         <code>
+          const promise = new Promise((success, reject) => {
+            // pending -> stan w trakcie
+            // fullfilled -> stan sukcesu
+            // rejected -> stan bledu
+        
+            setTimeout(() => {
+                const API_DATA = 'dane z api';
+        
+                success(API_DATA);
+                // reject(new Error('API ERROR!'))
+            }, 3_000);
+        });
+        
+        // console.log(promise);
+        
+        // promise.then((data) => {
+        //     console.log('Wykonala sie obietnica');
+        //     console.log('Dane ' + data);
+        // }, (error) => {
+        //     console.log('Blad: ' + error)
+        // });
+        
+        // promise
+        //     .then((data) => {
+        //         console.log('Wykonala sie obietnica');
+        //         console.log('Dane ' + data);
+        
+        //         return 10;
+        //     })
+        //     .then(n => {
+        //         console.log(n);
+        //     })
+        //     .catch((error) => {
+        //         console.log('Blad: ' + error)
+        //     })
+        //     .finally(() => {
+        //         console.log('Zawsze sie wykonam')
+        //     });
+        
+        // console.log('Po promise');
+        
+        const api = (time, data, rejectPromise) => {
+            return new Promise((success, reject) => {
+                setTimeout(() => {
+                    if (rejectPromise) reject(new Error('API ERROR!'))
+                    else success(data);
+                }, time);
+            });
+        }
+        
+        // const firstPromise = api(2_000, 'po 2s', false);
+        
+        // const secondPromise = api(4_000, 'po 4s', false);
+        
+        // const thirdPromise = api(3_000, 'po 3s', true);
+        
+        // // Czeka na wszystkie obietnice z tablicy
+        // // Konczy sie sukcesem, jesli wszystkie obietnice zakonczyly sie sukcesem
+        // // Konczy sie bledem, jesli dowolna obietnica zakonczyla sie bledem
+        // Promise.all([
+        //     firstPromise,
+        //     secondPromise,
+        //     thirdPromise
+        // ]).then(() => {
+        //     console.log('Promise all sukces')
+        // }).catch(() => {
+        //     console.log('Promise all blad')
+        // });
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise#static_methods
+        
+        // const response = api(3_000, 'Sukces', false);
+        
+        // response.then(data => {
+        //     console.log('SUKCES!');
+        // });
+        
+        // Funkcja async/await 
+        const fetchData = async () => {
+            try {
+                // Czekamy na zakonczenie obietnicy
+                const response = await api(3_000, 'Sukces', true);
+                
+                // Odpali sie dopiero po zakonczeniu obietnicy
+                console.log('Linijka po obietnicy');
+        
+                // Obsluga bledu 
+            } catch(err) {
+                console.log('Blad: ', err);
+            } finally {
+                // ... 
+            }
+        
+            // Przyklad z tablica funkcji zwracajacych obietnice, gdzie po kolei wywolujemy kazda z nich
+            // const operations = [
+            //     () => api(3_000, 'Sukces', true),
+            //     () => api(3_000, 'Sukces', true)
+            //   ];
+        
+            // for (const operation of operations) {
+            //     try {
+            //         await operation();
+            //     } catch(err) {
+        
+            //     }
+            // }
+        };
+        
+        // const fetchData = () => {
+        //     const response = api(3_000, 'Sukces', false);
+        
+        //     response.then(() => {
+        //         console.log('Linijka po obietnicy');
+        //     });
+        // };
+        
+        fetchData();
+        
+        console.log('Po Fetch Data');
+        
+        
+         </code>
+       </pre>
+      </div>
+      <!-- Wykonuje funkcje po pewnym czasie -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
+        <pre class="text-inherit">
+      <h1>Timeouts</h1>
+       <code>
+        // Wykonuje funkcje po pewnym czasie
+        const timoutId = setTimeout(() => {
+            console.log('Wykonalam sie', new Date().toTimeString());
+            // Minimalny czas w milisekundach
+        }, 3_000);
+        
+        // Czyszczenie timeoutu
+        // clearTimeout(timoutId);
+        
+        // Symulacja dlugiej operacji
+        // while (true) {
+        //     if (new Date().getSeconds() > 15) break;
+        // }
+        
+        console.log('Po setTimeout', new Date().toTimeString());
+        
+        // Wykonuje funkcje co pewien czas
+        const intervalId = setInterval(() => {
+            const now =  new Date();
+        
+            console.log(`${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
+            // minimalny czas interwaluw milisekundach
+        }, 1_000);
+        
+        // Wyczysc interwal po 5 sekundach
+        setTimeout(() => {
+            clearInterval(intervalId);
+        }, 5_000);
+       </code>
+     </pre>
+      </div>
+      <!-- fetch -->
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
+        <pre class="text-inherit">
+    <h1>fetch</h1>
+     <code>
+      // Pobieranie danych, fetch zwraca obietnice
+      fetch('https://reqres.in/api/users')
+          // dostajemy obiekt typu Response i zamieniamy na obiekt w JS
+          .then((response) => response.json())
+          // Dane z serwera
+          .then(data => {
+              console.log(data);
+          })
+     </code>
+   </pre>
+      </div>
+      <!--  -->
     </mian>
   </body>
 </html>

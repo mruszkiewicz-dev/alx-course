@@ -7,22 +7,126 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <title>Document</title>
+    <title>30_oct</title>
   </head>
   <body class="h-screen">
-    <mian
-      class="flex flex-col justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl"
-    >
-      <div class="">
+    <mian class="flex flex-col justify-center items-center">
+      <div
+        class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+      >
         <pre class="text-inherit">
+            <h1>Komendy Linux</h1>
             <code>
-               // Twój kod tutaj
-               function example() {
-                  console.log("Hello, Tailwind CSS!");
-               }
+              ls - List 
+              -l  - Lista
+              -a  - All ( wszystkie pliki)
+              -h  - Human readable 
+                ( czytelniejsze rozmiary )
+              -R  - ( Recursive rekursywnie )
+
+            cd - Change Directory 
+              Zmien katalog
+              
+            /Users/oskar/Downloads
+            ~ - katalog domowty
+            .. - katalog rodzic
+            
+            pwd - Print Working Directory
+                  Wydrukuj Katalog Roboczy
+
+                  mkdir - Make Directory
+                  Zrób Katalog
+                  
+              touch - Touch
+                  Dotknij
+                  
             </code>
-         </pre>
+           </pre>
       </div>
+      <div
+      class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+    >
+      <pre class="text-inherit">
+          <h1>VIM</h1>
+          <code>
+           
+        vim 
+          :q - quit ( wyjdz )
+          :q! - force quit ( uzyj mocy )
+        
+          G -> koniec pliku
+          1G -> początek pliku
+          :10 -> linia 10
+          x -> usuwa kolejny znak
+          dw -> usun od kursora do 
+            konca slowa
+          dd -> usun cala linijke
+          D -> usun od kursora do
+            konca linijki
+            
+          i -> insert ( tryb edycji
+            tam gdzie kursor )
+          escp -> tryb podgladu
+          a -> append ( doklej )
+            tryb edycji po kurosorze
+          o -> over tryb edycji od 
+            kolejnej linii
+            
+          u -> cofnij zmiane
+          ctrl + r -> przywroc zmiane
+          
+          :w -> write ( zapisz zmiany )
+          :wq -> zapisz i wyjdz
+          
+        cat -> concatonate ( podglad pliku w terminalu )
+          </code>
+         </pre>
+    </div>
+    <div
+    class="justify-center items-center bg-gray-200 rounded-lg m-10 shadow-2xl my-10 px-1"
+  >
+    <pre class="text-inherit">
+        <h1>Git</h1>
+        <code>
+          git config --global user.name "Oskar ALX Kupski
+          git config --global user.email "oskar.kupski@gmail.com"
+          
+          git init - zainicjalizuj nowe lokalne repozytorium
+          git status - status repozytorium
+          git add - dodaj do sledzenia
+          git add . - dodaj do sledzenia wszystkie pliki
+          
+          git commit - dodaj commit ( odpala vim )
+          git commit -m "..." - dodaj commit o tresci ...
+          
+          // Dodanie zdalnego repozytorium
+          git remote add origin git@github.com:oskarski/ALX_30_oct.git
+          
+          // Zmiana linku do zdalnego repozytorium
+          git remote set-url origin git@github.com:oskarski/ALX_30_oct.git
+          
+          git push -u origin main
+          git push -> kiedy juz mamy powiazanie z origin main
+          git clone -> slklonuj repozytorium na lokalna maszyne
+          git log -> historia commitow
+                q -> wyjscie ( jesli duza historia )
+
+          git reset --hard <- zresetuj do ostatniego commita
+
+          UWAGA
+          git reset --hard HEAD~2
+          git push origin main --force 
+
+          git branch -> lista galezi ( branche )
+          git checkout -b feature -> ( stworz branch feature i na niego przejdz )
+          git checkout feat -> przejdz na brrancha feat
+          git branch feat -> nowy branch feat
+
+          git pull origin main -> pobranie zmian z repozytorium zdalnego z brancha main
+        </code>
+       </pre>
+  </div>
+  
     </mian>
   </body>
 </html>
