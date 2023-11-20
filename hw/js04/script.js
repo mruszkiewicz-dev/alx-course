@@ -16,41 +16,4 @@ form.innerHTML = `
 
 formContainer.appendChild(form);
 
-const calculate = (operation, firstNumber, secondNumber) => {
-  switch (operation) {
-    case "+":
-      return firstNumber + secondNumber;
-    case "-":
-      return firstNumber - secondNumber;
-    case "*":
-      return firstNumber * secondNumber;
-    case "/":
-      return firstNumber / secondNumber;
-  }
-};
 
-const submitForm = (event) => {
-  event.preventDefault();
-
-  const operation = document.getElementById("operator").value;
-  const firstNumber = parseFloat(document.getElementById("firNum").value);
-  const secondNumber = parseFloat(document.getElementById("secNum").value);
-
-  const result = calculate(operation, firstNumber, secondNumber);
-  displayResult(result, operation, firstNumber, secondNumber);
-};
-
-const displayResult = (result, operation, firstNumber, secondNumber) => {
-  const res = document.createElement("div");
-  console.log(result);
-  if (!isNaN(result)) {
-    res.innerHTML = `${firstNumber} ${operation} ${secondNumber} = ${result}`;
-    res.className = "alert alert-success";
-  } else {
-    res.innerHTML = `Błędne dane`;
-    res.className = "alert alert-danger";
-  }
-  formContainer.appendChild(res);
-};
-
-document.getElementById("form").addEventListener("submit", submitForm);
