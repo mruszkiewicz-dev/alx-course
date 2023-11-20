@@ -1,7 +1,4 @@
-console.log('aaa')
-
-const formCo = document.getElementById("app");
-
+const formContainer = document.getElementById("app");
 
 const form = document.createElement("form");
 form.innerHTML = `
@@ -14,5 +11,4 @@ form.innerHTML = `
    <button type="submit" class="btn btn-primary mb-3" >Oblicz</button>
 `;
 
-
-formCo.appendChild(form);
+formContainer.appendChild(form);
