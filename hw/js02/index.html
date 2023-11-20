@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script> 
+        const products = [
+            { name: 'Banany', unitPrice: 2.46, quantity: 3, inStock: true, },
+            { name: 'Gruszki', unitPrice: 3.99, quantity: 7, inStock: false, },
+            { name: 'Jabłka', unitPrice: 1.96, quantity: 4, inStock: true, },
+            { name: 'Truskawki', unitPrice: Number('13.12'), quantity: 4, inStock: true, },
+        ];
+
+        const total = products.reduce((sum, product) => sum + product.unitPrice, 0);
+        const priceAvg = total / products.length;
+
+        const obj = {
+            total,
+            priceAvg 
+        }
+        console.log(obj)
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
